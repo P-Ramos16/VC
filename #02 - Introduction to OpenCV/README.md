@@ -37,6 +37,7 @@ Do not forget to associate the callback to each window using the following code:
 ``` html
     cv2.setMouseCallback("Window", mouse_handler)
 ```
+
 ## 2.4 - Conversion between color spaces
 Load a color image and use the function cvtColor to convert it to a gray-level image (`COLOR_RGB2GRAY`). 
 

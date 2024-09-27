@@ -1,4 +1,4 @@
- # Aula_02_ex_01.py
+ # Aula_02_ex_02.py
  #
  # Example of visualization of an image with openCV
  #
