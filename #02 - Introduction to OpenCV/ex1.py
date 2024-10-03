@@ -33,7 +33,8 @@ copiedImage = image.copy()
 for rowID in range(0, height):
     for columnID in range(0, width):
         if copiedImage[rowID][columnID] < 128:
-              copiedImage[rowID][columnID] = 0
+            copiedImage[rowID][columnID] = 0
+
 
 # Create a vsiualization window (optional)
 # CV_WINDOW_AUTOSIZE : window size will depend on image size

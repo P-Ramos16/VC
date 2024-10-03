@@ -28,19 +28,27 @@ width = shapeValues[1]
 print("Image Size: (%d,%d)" % (height, width))
 print("Image Type: %s" % (bmpImage.dtype))
 
-copiedImage = bmpImage.copy()
+subImage = bmpImage.copy()
+realSubImage = cv2.subtract(bmpImage, jpgImage)
+
 
 for rowID in range(0, height):
     for columnID in range(0, width):
          for colour in range(0, shapeValues[2]):
-            copiedImage[rowID][columnID][colour] -= jpgImage[rowID][columnID][colour]
-
+            subImage[rowID][columnID][colour] -= jpgImage[rowID][columnID][colour]
 
 # Create a vsiualization window (optional)
 # CV_WINDOW_AUTOSIZE : window size will depend on image size
 cv2.namedWindow( "Display window", cv2.WINDOW_AUTOSIZE )
 
-final_image = cv2.hconcat([bmpImage, jpgImage, copiedImage])
+final_image = cv2.hconcat([bmpImage, jpgImage, subImage])
+final_image = cv2.hconcat([bmpImage, jpgImage, subImage])
+
+
+row1_image = cv2.hconcat([bmpImage, jpgImage])
+row2_image = cv2.hconcat([subImage, realSubImage])
+
+final_image = cv2.vconcat([row1_image, row2_image])
 
 # Show the images
 cv2.imshow( "Display window", final_image )

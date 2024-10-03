@@ -12,7 +12,7 @@ import sys
 def mouse_handler(event, x, y, flags, params):
 
     color = [255, 25, 100]
-    thickness = 3
+    thickness = -1
     radius = 12
 
     if event == cv2.EVENT_LBUTTONDOWN:
