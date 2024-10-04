@@ -14,13 +14,13 @@ from matplotlib import pyplot as plt
 # image = cv2.imread( sys.argv[1] , cv2.IMREAD_UNCHANGED );
 image = cv2.imread( "../images/lena.jpg", cv2.IMREAD_UNCHANGED );
 
-if  np.shape(image) == ():
+if np.shape(image) == ():
 	# Failed Reading
 	print("Image file could not be open!")
 	exit(-1)
 
 # Image characteristics
-if len (image.shape) > 2:
+if len(image.shape) > 2:
 	print ("The loaded image is NOT a GRAY-LEVEL image !")
 	exit(-1)
 
@@ -37,10 +37,14 @@ print("Number of elements : %d" % image.size)
 
 print("Image Size: (%d,%d)" % (height, width))
 
-# Size
-histSize = 256	 # from 0 to 255
+# SizehistImageWidth, 
+histSize = 255	 # from 0 to 255
 # Intensity Range
-histRange = [0, 256]
+histRange = [0, 255]
+
+#  If both are changed to, for example, 512, a lot of zero values appear 
+# on the right of the histogram
+
 
 # Compute the histogram
 hist_item = cv2.calcHist([image], [0], None, [histSize], histRange)
@@ -54,7 +58,7 @@ color = (125)
 histImage = np.zeros((histImageWidth,histImageHeight,1), np.uint8)
 
 # Width of each histogram bar
-binWidth = int (np.ceil(histImageWidth*1.0 / histSize))
+binWidth = int(np.ceil(histImageWidth*1.0 / histSize))
 
 # Normalize values to [0, histImageHeight]
 cv2.normalize(hist_item, hist_item, 0, histImageHeight, cv2.NORM_MINMAX)
