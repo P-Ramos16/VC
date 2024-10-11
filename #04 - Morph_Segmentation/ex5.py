@@ -21,28 +21,28 @@ copiedImage4 = image4.copy()
 
 
 #  Define the Kernels
-circularKernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(11,11))
+circularKernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(22,22))
 #  Dilate the image 
-erodedImage3 = cv2.erode(copiedImage4, circularKernel, iterations=1)
-openImage1 = cv2.dilate(erodedImage3, circularKernel, iterations=1)
+dilatedImage1 = cv2.dilate(copiedImage4, circularKernel, iterations=1)
+closedImage1 = cv2.erode(dilatedImage1, circularKernel, iterations=1)
+
+circularKernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(13,13))
+#  Dilate the image 
+dilatedImage2 = cv2.dilate(copiedImage4, circularKernel, iterations=1)
+closedImage2 = cv2.erode(dilatedImage2, circularKernel, iterations=1)
+
 
 circularKernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
 #  Dilate the image 
-erodedImage3 = cv2.erode(copiedImage4, circularKernel, iterations=1)
-openImage2 = cv2.dilate(erodedImage3, circularKernel, iterations=1)
-
-
-circularKernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(2,2))
-#  Dilate the image 
-erodedImage3 = cv2.erode(copiedImage4, circularKernel, iterations=1)
-openImage3 = cv2.dilate(erodedImage3, circularKernel, iterations=1)
+dilatedImage3 = cv2.dilate(copiedImage4, circularKernel, iterations=1)
+closedImage3 = cv2.erode(dilatedImage3, circularKernel, iterations=1)
 
 # Create a vsiualization window (optional)
 # CV_WINDOW_AUTOSIZE : window size will depend on image size
 cv2.namedWindow( "Display window", cv2.WINDOW_AUTOSIZE )
 
-top_image = cv2.hconcat([image4, openImage1])
-bot_image = cv2.hconcat([openImage2, openImage2])
+top_image = cv2.hconcat([image4, closedImage1])
+bot_image = cv2.hconcat([closedImage2, closedImage3])
 final_image = cv2.vconcat([top_image, bot_image])
 
 # Show the images
