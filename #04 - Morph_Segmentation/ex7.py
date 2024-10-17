@@ -12,17 +12,17 @@ import sys
 def mouse_handler(event, x, y, flags, params):
 
 	seedPoint = (x, y)
-	newVal = (30,30,30)
+	newVal = (125,125,125)
 	loDiff = 15
 	upDiff = 15
 
 	if event == cv2.EVENT_LBUTTONDOWN:
 		cv2.floodFill(image, None, seedPoint, newVal, (loDiff, upDiff))
-		cv2.imshow("Display window", image)  
+		cv2.imshow("Display window", image)
 
 
-# Read the image
-image = cv2.imread("../images/lena.jpg", cv2.IMREAD_UNCHANGED)
+# Read the image			lena.jpg
+image = cv2.imread("../images/tools_2.png", cv2.IMREAD_UNCHANGED)
 
 if  np.shape(image) == ():
 	# Failed Reading
