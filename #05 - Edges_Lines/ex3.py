@@ -1,6 +1,6 @@
-# Aula_04_ex_05.py
+# Aula_04_ex_02.py
 #
-# Sobel Operator
+# Mean Filter
 #
 # Paulo Dias 
 
@@ -13,7 +13,7 @@ def printImageFeatures(image):
 	# Image characteristics
 	if len(image.shape) == 2:
 		height, width = image.shape
-		nchannels = 1;
+		nchannels = 1
 	else:
 		height, width, nchannels = image.shape
 
@@ -24,8 +24,8 @@ def printImageFeatures(image):
 	print("Number of elements : %d" % image.size)
 
 # Read the image from argv
-#image = cv2.imread( sys.argv[1] , cv2.IMREAD_GRAYSCALE );
-image = cv2.imread( "./lena.jpg", cv2.IMREAD_GRAYSCALE );
+image = cv2.imread( sys.argv[1] , cv2.IMREAD_GRAYSCALE );
+#image = cv2.imread( "./lena.jpg", cv2.IMREAD_GRAYSCALE );
 
 if  np.shape(image) == ():
 	# Failed Reading
@@ -36,14 +36,17 @@ printImageFeatures(image)
 
 cv2.imshow('Orginal', image)
 
-# Sobel Operatot 3 x 3
-imageSobel3x3_X = cv2.Sobel(image, cv2.CV_64F, 1, 0, 3)
+# Median blur 3 x 3
+imageAFilter7x7_median = cv2.medianBlur( image, 5)
+imageAFilter7x7_normal = cv2.blur( image, (5, 5))
 
-cv2.namedWindow( "Sobel 3 x 3 - X", cv2.WINDOW_AUTOSIZE )
-cv2.imshow( "Sobel 3 x 3 - X", imageSobel3x3_X )
-image8bits = np.uint8( np.absolute(imageSobel3x3_X) )
-cv2.imshow( "8 bits - Sobel 3 x 3 - X", image8bits )
 
+
+cv2.namedWindow( "Display window", cv2.WINDOW_AUTOSIZE )
+
+final_image = cv2.hconcat([image, imageAFilter7x7_normal, imageAFilter7x7_median])
+
+cv2.imshow( "Display window", final_image )
 
 cv2.waitKey(0)
 

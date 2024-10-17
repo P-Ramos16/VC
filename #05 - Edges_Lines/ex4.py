@@ -24,8 +24,8 @@ def printImageFeatures(image):
 	print("Number of elements : %d" % image.size)
 
 # Read the image from argv
-#image = cv2.imread( sys.argv[1] , cv2.IMREAD_GRAYSCALE );
-image = cv2.imread( "./lena.jpg", cv2.IMREAD_GRAYSCALE );
+image = cv2.imread( sys.argv[1] , cv2.IMREAD_GRAYSCALE );
+#image = cv2.imread( "./lena.jpg", cv2.IMREAD_GRAYSCALE );
 
 if  np.shape(image) == ():
 	# Failed Reading
@@ -36,10 +36,22 @@ printImageFeatures(image)
 
 cv2.imshow('Orginal', image)
 
-# Average filter 3 x 3
-imageAFilter3x3_1 = cv2.blur( image, (3, 3))
-cv2.namedWindow( "Average Filter 3 x 3 - 1 Iter", cv2.WINDOW_AUTOSIZE )
-cv2.imshow( "Average Filter 3 x 3 - 1 Iter", imageAFilter3x3_1 )
+# Median blur 3 x 3
+imageAFilter7x7_normal = cv2.blur( image, (5, 5))
+imageAFilter7x7_median = cv2.medianBlur( image, 5)
+imageAFilter7x7_gaussian = cv2.GaussianBlur( image, (5, 5), 0)
+
+
+
+cv2.namedWindow( "Display window", cv2.WINDOW_AUTOSIZE )
+
+
+top_image = cv2.hconcat([image, imageAFilter7x7_normal])
+bot_image = cv2.hconcat([imageAFilter7x7_median, imageAFilter7x7_gaussian])
+
+final_image = cv2.vconcat([top_image, bot_image])
+
+cv2.imshow( "Display window", final_image )
 
 cv2.waitKey(0)
 
