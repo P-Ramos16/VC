@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Lab 10 - 3D Vision / Mesh processing
+=======
+Lab 10 - 3D Vision / Mesh processing
+>>>>>>> upstream/master
 
 ## Outline
 * Normal estimation
@@ -7,7 +11,11 @@
 * Mesh operations
 
 
+<<<<<<< HEAD
 ## 10.1 - Normal Estimation
+=======
+## Normal Estimation
+>>>>>>> upstream/master
 Analyze the code in file `Aula_10_01_Mesh.py` showing some basics operations on meshes.
 Add the following code to acess the vertexes of the model and show the computed normals.
 ```html
@@ -17,7 +25,11 @@ pcd.estimate_normals()
 o3d.visualization.draw_geometries([pcd],point_show_normal=True )
 ```
 
+<<<<<<< HEAD
 ## 10.2 - Surface Reconstruction
+=======
+## Surface Reconstruction
+>>>>>>> upstream/master
 Read the `merged_office.ply` from last lecture and compute and visualize the normals for the point cloud. 
 This step is important since many surface reconstruction algorithm require normal estimation to compute a 3D mesh from a pointCloud.
 Add an axes frame to the windows to help understand the coordinate system.
@@ -35,10 +47,17 @@ Save the triangle mesh obtained with the name `mesh_offices.ply`.
 ##Optional
 You may test other surface reconstruction algorithms [Alpha shapes and ball pivoting](http://www.open3d.org/docs/release/tutorial/geometry/surface_reconstruction.html#)
 
+<<<<<<< HEAD
 ## 10.3 - Mesh Properties
 Analyze the code `Meshproperties.py` to evaluate [mesh properties](http://www.open3d.org/docs/release/tutorial/geometry/mesh.html#Mesh-properties). See the tutorial to understand the different mesh properties. 
 
 ## 10.4 - Mesh operations
+=======
+## Mesh Properties
+Analyze the code `Meshproperties.py` to evaluate [mesh properties](http://www.open3d.org/docs/release/tutorial/geometry/mesh.html#Mesh-properties). See the tutorial to understand the different mesh properties. 
+
+## Mesh operations
+>>>>>>> upstream/master
 Apply some of the following operations to the mesh `mesh_offices-ply` changing the parameters to understand what the operations are performing:
 * [Sampling](http://www.open3d.org/docs/release/tutorial/geometry/mesh.html#Sampling)
 * [Subdivision](http://www.open3d.org/docs/release/tutorial/geometry/mesh.html#Mesh-subdivision )
