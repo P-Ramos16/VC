@@ -1,6 +1,6 @@
  # Aula_01_ex_01.py
  #
- # Cheesboard Calibration
+ # Chessboard Calibration
  #
  # Paulo Dias
 
