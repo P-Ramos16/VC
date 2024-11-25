@@ -52,7 +52,7 @@ def select_dst(event, x, y, flags, params):
         cv2.putText(imageTransformed,str(len(dstPts)), (x+10,y+10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0))
         cv2.imshow("Warped", imageTransformed)
 
-        if len(dstPts) > 3:
+        if len(dstPts) > 3 and len(srcPts) > 3:
             np_srcPts = np.array(srcPts).astype(np.float32)
             np_dstPts = np.array(dstPts).astype(np.float32)
 
@@ -63,18 +63,11 @@ def select_dst(event, x, y, flags, params):
 
             cv2.imshow('Final', im_out)
 
-            imgDiff = cv2.absdiff(imageTransformed, warp_dst)
-            cv2.imshow('Diff', imgDiff)
+            print(h)
 
-            print(M)
-
-
-            print(f"X diff {M[0][2]}")
-            print(f"Y diff {M[1][2]}")
-            print(f"Angle  {math.degrees(math.acos(M[0][0]))}")
-
-
-
+            print(f"X diff {h[0][2]}")
+            print(f"Y diff {h[1][2]}")
+            print(f"Angle  {math.degrees(math.acos(h[0][0] % (math.pi/2)))}")
 
 srcPts = []
 dstPts = []
