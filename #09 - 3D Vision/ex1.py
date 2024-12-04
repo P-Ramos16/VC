@@ -21,24 +21,19 @@ for i in range(p.shape[0]):
 # Converter lista filtrada para array numpy
 fp = np.array(fp)
 
-# Filtrar pontos com z entre 0.1 e 5
-fp = fp[(fp[:, 2] >= 0.1
-) & (fp[:, 2] <= 5)]
-
-
 pcl = o3d.geometry.PointCloud()
 pcl.points = o3d.utility.Vector3dVector(fp)
 #pcl.paint_uniform_color([0.0, 0.0, 0.0])
 
+# Cropping the mesh using its bouding box to remove positive Z-axis between 0.1 and 5
+bbox = pcl.get_axis_aligned_bounding_box()
+bbox_points = np.asarray(bbox.get_box_points())
+bbox_points[:, 2] = np.clip(bbox_points[:, 2], a_min=0.1, a_max=5)
+bbox_cropped = o3d.geometry.AxisAlignedBoundingBox.create_from_points(o3d.utility.Vector3dVector(bbox_points))
+mesh_cropped = pcl.crop(bbox_cropped)
+
 # Create axes mesh
 Axes = o3d.geometry.TriangleMesh.create_coordinate_frame(1)
-
-# Cropping the mesh using its bouding box to remove positive Z-axis between 0.1 and 5
-""" bbox = pcl.get_axis_aligned_bounding_box()
-bbox_points = np.asarray(bbox.get_box_points())
-bbox_points[:, 2] = np.clip(bbox_points[:, 2], a_min=0.1, a_max=2)
-bbox_cropped = o3d.geometry.AxisAlignedBoundingBox.create_from_points(o3d.utility.Vector3dVector(bbox_points))
-mesh_cropped = pcl.crop(bbox_cropped) """
 
 # shome meshes in view
 o3d.visualization.draw_geometries([pcl , Axes])
