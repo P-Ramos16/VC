@@ -67,15 +67,16 @@ if left_images and right_images:
     # Calcular o mapa de disparidade
     disparity = stereo.compute(rectified_left, rectified_right)
 
-    # Normalizar o mapa de disparidade
-    disparity = cv2.normalize(src=disparity, dst=disparity, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
-    disparity = np.uint8(disparity)
-
     # Calcular as coordenadas 3D usando cv2.reprojectImageTo3D
     points_3d = cv2.reprojectImageTo3D(disparity, Q)
+    print(points_3d)
 
     # Salvar as coordenadas 3D em um arquivo .npz
     np.savez('3d_coordinates.npz', points=points_3d)
+
+    # Normalizar o mapa de disparidade
+    disparity = cv2.normalize(src=disparity, dst=disparity, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
+    disparity = np.uint8(disparity)
 
     # Mostrar as imagens retificadas e mapa de disparidade
     cv2.imshow('Left Image - Rectified', rectified_left)

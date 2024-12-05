@@ -64,12 +64,13 @@ for imageIndex in range(len(imagesLeft)):
         imgCornersLeft.append(cornersLeft)
         imgCornersRight.append(cornersRight)
 
+flags = cv2.CALIB_USE_INTRINSIC_GUESS + cv2.CALIB_FIX_INTRINSIC
 
 (retval, intrinsics1, distortion1,
  intrinsics2, distortion2, R, 
  T, E, F)                       = cv2.stereoCalibrate(objpoints, imgCornersLeft, imgCornersRight,
-                                                      None, None, None, 
-                                                      None, img_size, flags=cv2.CALIB_SAME_FOCAL_LENGTH)
+                                                      None, None,
+                                                      None, None, img_size, flags=cv2.CALIB_SAME_FOCAL_LENGTH)
 
 if retval:
     print('Left camera:')

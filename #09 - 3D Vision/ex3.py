@@ -10,6 +10,10 @@ def draw_registration_result(source, target, transformation):
     source_temp.paint_uniform_color([1, 0.706, 0])
     target_temp.paint_uniform_color([0, 0.651, 0.929])
     source_temp.transform(transformation)
+
+    source_center = np.mean(np.asarray(source_temp.points), axis=0)
+    target_center = np.mean(np.asarray(target_temp.points), axis=0)
+
     o3d.visualization.draw_geometries([source_temp, target_temp],
                                       zoom=0.4459,
                                       front=[0.9288, -0.2951, -0.2242],
