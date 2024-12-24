@@ -35,14 +35,16 @@ for planeID in range(3):
     print(f"     {planeID} | {a:5.2f} | {b:5.2f} | {c:5.2f} | {d:5.2f} |")
     
     inlier_cloud = pcd.select_by_index(inliers)
-    inlier_cloud.paint_uniform_color([1.0, 0, 0])
+    if planeID == 0:
+        inlier_cloud.paint_uniform_color([1.0, 0, 0])
+    elif planeID == 1:
+        inlier_cloud.paint_uniform_color([0, 1.0, 0])
+    else:
+        inlier_cloud.paint_uniform_color([0, 0, 1.0])
+
     pcd = pcd.select_by_index(inliers, invert=True)
     planes.append(inlier_cloud)
 
 
 
-o3d.visualization.draw_geometries(planes + [pcd],
-                                  zoom=0.8,
-                                  front=[-0.4999, -0.1659, -0.8499],
-                                  lookat=[2.1813, 2.0619, 2.0999],
-                                  up=[0.1204, -0.9852, 0.1215])
+o3d.visualization.draw_geometries(planes + [pcd])
